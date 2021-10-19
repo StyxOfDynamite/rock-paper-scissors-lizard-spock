@@ -2,6 +2,9 @@
 
 namespace App;
 
+/**
+ * Scissors defines the moves it beats, loses and draws against.
+ */
 class Scissors extends Move
 {
     public function __construct()

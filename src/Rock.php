@@ -2,6 +2,9 @@
 
 namespace App;
 
+/**
+ * Rock defines the moves it beats, loses and draws against.
+ */
 class Rock extends Move
 {
     public function __construct()

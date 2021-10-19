@@ -2,6 +2,9 @@
 
 namespace App;
 
+/**
+ * Paper defines the moves it beats, loses and draws against.
+ */
 class Paper extends Move
 {
     public function __construct()
