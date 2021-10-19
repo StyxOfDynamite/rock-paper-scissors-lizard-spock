@@ -17,5 +17,4 @@ interface MoveFactoryInterface
     public function createLizard(): Lizard;
 
     public function createSpock(): Spock;
-
 }
