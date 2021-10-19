@@ -57,4 +57,12 @@ class Game
     {
         $this->winner = $player;
     }
+
+    /**
+     * Getter for the winner.
+     */
+    public function getWinner() : Player
+    {
+        return $this->winner;
+    }
 }

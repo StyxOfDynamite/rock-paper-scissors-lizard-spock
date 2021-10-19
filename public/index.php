@@ -43,4 +43,4 @@ while (! $game->isFinished()) {
 $game->setWinner($game->findWinner());
 
 // output game->winner
-printf("=== GAME WON BY ==== %s\n", $game->winner);
+printf("=== GAME WON BY ==== %s\n", $game->getWinner());
