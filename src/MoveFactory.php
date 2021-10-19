@@ -22,4 +22,14 @@ class MoveFactory implements MoveFactoryInterface
     {
         return new Scissors();
     }
+
+    public function createLizard(): Lizard
+    {
+        return new Lizard();
+    }
+
+    public function createSpock(): Spock
+    {
+        return new Spock();
+    }
 }

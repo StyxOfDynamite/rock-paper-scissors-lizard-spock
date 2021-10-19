@@ -13,4 +13,9 @@ interface MoveFactoryInterface
     public function createPaper(): Paper;
 
     public function createScissors(): Scissors;
+    
+    public function createLizard(): Lizard;
+
+    public function createSpock(): Spock;
+
 }

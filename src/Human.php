@@ -24,7 +24,7 @@ class Human extends Player
      */
     public function chooseMove()
     {
-        $input = readline("Enter your move r/p/s ?");
+        $input = readline("Enter your move r/p/s/l/sp ?");
         switch ($input) {
             case 'r':
                 return $this->moveFactory->createRock();
@@ -34,6 +34,12 @@ class Human extends Player
                 break;
             case 's':
                 return $this->moveFactory->createScissors();
+                break;
+            case 'l':
+                return $this->moveFactory->createLizard();
+                break;
+            case 'sp':
+                return $this->moveFactory->createSpock();
                 break;
             default:
                 // Only allows creation of valid moves, this could be moved into the factory

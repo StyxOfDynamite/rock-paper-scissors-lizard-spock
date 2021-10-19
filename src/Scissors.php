@@ -9,8 +9,8 @@ class Scissors extends Move
 {
     public function __construct()
     {
-        $this->beats = [self::PAPER];
-        $this->loses = [self::ROCK];
+        $this->beats = [self::PAPER, self::LIZARD];
+        $this->loses = [self::ROCK, self::SPOCK];
         $this->type = self::SCISSORS;
     }
 }

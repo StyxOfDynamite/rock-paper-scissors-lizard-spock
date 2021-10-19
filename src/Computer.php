@@ -22,7 +22,7 @@ class Computer extends Player
      */
     public function chooseMove()
     {
-        switch (rand(1, 3)) {
+        switch (rand(1, 5)) {
             case 1:
                 return $this->moveFactory->createRock();
                 break;
@@ -31,6 +31,12 @@ class Computer extends Player
                 break;
             case 3:
                 return $this->moveFactory->createScissors();
+                break;
+            case 4:
+                return $this->moveFactory->createLizard();
+                break;
+            case 5:
+                return $this->moveFactory->createSpock();
                 break;
         }
     }
