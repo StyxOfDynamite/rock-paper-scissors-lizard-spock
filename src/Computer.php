@@ -2,14 +2,24 @@
 
 namespace App;
 
+/**
+ * This class represnts a computer player.
+ * It is hardcoded to instansiate an player isntance with the name Computer.
+ * It is forced to implement the abstract method chooseMove().
+ */
 class Computer extends Player
 {
-
+    /**
+     * Creates a new Player with the name Computer
+     */
     public function __construct()
     {
         parent::__construct('Computer');
     }
 
+    /**
+     * chooseMove must be implmented by any subclass of Player.
+     */
     public function chooseMove()
     {
         switch (rand(1, 3)) {

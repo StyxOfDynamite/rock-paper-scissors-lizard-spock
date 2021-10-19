@@ -2,10 +2,14 @@
 
 namespace App;
 
+/**
+ * The game class holds the players and the score required to win as well as the winner.
+ */
 class Game
 {
     protected $players = [];
-    protected $gameOverAt;
+    protected $gameOverAt = 3;
+    protected $winner = null;
 
     public function __construct(array $options)
     {
@@ -20,6 +24,7 @@ class Game
         $this->players[] = $player;
     }
 
+    // This method determins if any of the players has reached the score required to win.
     public function isFinished()
     {
         foreach ($this->players as $player) {
@@ -31,6 +36,7 @@ class Game
         return false;
     }
 
+    // This returns the winner of the game, the first player to have reached the score required to win.
     public function findWinner()
     {
         foreach ($this->players as $player) {
@@ -40,6 +46,7 @@ class Game
         }
     }
 
+    // This is a setter to add the winner.
     public function setWinner(Player $player)
     {
         $this->winner = $player;

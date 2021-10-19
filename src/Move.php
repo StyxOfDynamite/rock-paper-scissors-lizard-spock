@@ -11,8 +11,6 @@ abstract class Move implements Turn
     const ROCK = 'ROCK';
     const PAPER = 'PAPER';
     const SCISSORS = 'SCISSORS';
-    const LIZARD = 'LIZARD';
-    const SPOCK = 'SPOCK';
 
     public function beats(Move $opponent)
     {

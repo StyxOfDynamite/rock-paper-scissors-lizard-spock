@@ -2,7 +2,11 @@
 
 namespace App;
 
-class MoveFactory implements Factory
+/**
+ * This Factory returns concrete implementations of the available moves.
+ * If the Interface added new moves, they would have to be implemented here.
+ */
+class MoveFactory implements MoveFactoryInterface
 {
     public function createRock(): Rock
     {
