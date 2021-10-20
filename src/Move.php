@@ -10,7 +10,7 @@ abstract class Move implements Turn
 {
     protected $beats = [];
 
-    public function __construct(...$beats)
+    public function __construct(Move ...$beats)
     {
         $this->beats = $beats;
     }
@@ -22,7 +22,7 @@ abstract class Move implements Turn
     public function beats(Move $opponent)
     {
         foreach ($this->beats as $beat) {
-            if (get_class($beat) === get_class($opponent)) {
+            if ($beat instanceof $opponent) {
                 return true;
             }
         }
