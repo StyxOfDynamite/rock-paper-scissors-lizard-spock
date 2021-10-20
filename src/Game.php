@@ -10,11 +10,16 @@ class Game
     protected $players = [];
     protected $gameOverAt = 3;
     protected $winner = null;
+    private $loggerFactory = null;
 
-    public function __construct(array $options)
+    public function __construct(array $options, LoggerFactoryInterface $loggerFactory)
     {
+        $this->loggerFactory = $loggerFactory;
         $this->players = [];
         $this->gameOverAt = $options['gameWonAt'];
+
+        $logger = $this->loggerFactory->provide('simple');
+        $logger->log("=== New Game ===\n");
 
         return $this;
     }
@@ -22,6 +27,8 @@ class Game
     public function addPlayer(Player $player)
     {
         $this->players[] = $player;
+        $logger = $this->loggerFactory->provide('simple');
+        $logger->log(sprintf("\tAdded Player (%s)\n", $player));
     }
     
     /**
@@ -31,6 +38,8 @@ class Game
     {
         foreach ($this->players as $player) {
             if ($player->getScore() === $this->gameOverAt) {
+                $logger = $this->loggerFactory->provide('simple');
+                $logger->log(sprintf("=== Game Finished ===\n"));
                 return true;
             }
         }
@@ -45,6 +54,8 @@ class Game
     {
         foreach ($this->players as $player) {
             if ($player->getScore() === $this->gameOverAt) {
+                $logger = $this->loggerFactory->provide('simple');
+                $logger->log(sprintf("\tWinner is %s!\n", $player));
                 return $player;
             }
         }

@@ -12,9 +12,9 @@ class Computer extends Player
     /**
      * Creates a new Player with the name Computer
      */
-    public function __construct()
+    public function __construct($loggerFactory)
     {
-        parent::__construct('Computer');
+        parent::__construct('Computer', $loggerFactory);
     }
 
     /**

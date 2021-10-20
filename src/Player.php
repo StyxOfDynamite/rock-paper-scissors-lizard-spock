@@ -13,12 +13,14 @@ abstract class Player
     protected $move;
     protected $score;
     protected $moveFactory;
+    protected $logger;
 
-    public function __construct(string $name)
+    public function __construct(string $name, LoggerFactoryInterface $loggerFactory)
     {
         $this->name = $name;
         $this->score = 0;
         $this->moveFactory = new MoveFactory;
+        $this->loggerFactory = $loggerFactory;
     }
 
     /**
@@ -27,6 +29,8 @@ abstract class Player
     public function setMove(Move $move)
     {
         $this->move = $move;
+        $logger = $this->loggerFactory->provide('screen');
+        $logger->log(sprintf("\t%s played %s\n", $this, $move));
     }
 
     /**
@@ -42,6 +46,8 @@ abstract class Player
      */
     public function addWin()
     {
+        $logger = $this->loggerFactory->provide('screen');
+        $logger->log(sprintf("\t%s Wins!\n", $this));
         $this->score++;
     }
 

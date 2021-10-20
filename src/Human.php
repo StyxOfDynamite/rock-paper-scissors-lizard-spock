@@ -13,9 +13,9 @@ use Exception;
 class Human extends Player
 {
 
-    public function __construct(string $name = 'Player')
+    public function __construct(string $name, LoggerFactoryInterface $loggerFactory)
     {
-        parent::__construct($name);
+        parent::__construct($name, $loggerFactory);
     }
 
     /**
