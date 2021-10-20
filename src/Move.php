@@ -8,18 +8,12 @@ namespace App;
  */
 abstract class Move implements Turn
 {
-    protected $type;
     protected $beats = [];
-    protected $loses = [];
 
-    /**
-     * These constants are used to define the available move types.
-     */
-    const ROCK = 'ROCK';
-    const PAPER = 'PAPER';
-    const SCISSORS = 'SCISSORS';
-    const LIZARD = 'LIZARD';
-    const SPOCK = 'SPOCK';
+    public function __construct(...$beats)
+    {
+        $this->beats = $beats;
+    }
 
     /**
      * beats() must be implemented in a way
@@ -27,7 +21,12 @@ abstract class Move implements Turn
      */
     public function beats(Move $opponent)
     {
-        return in_array($opponent->getType(), $this->beats);
+        foreach ($this->beats as $beat) {
+            if (get_class($beat) === get_class($opponent)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -36,23 +35,14 @@ abstract class Move implements Turn
      */
     public function draws(Move $opponent)
     {
-        return $opponent->getType() === $this->getType();
+        return $opponent instanceof $this;
     }
 
     /**
-     * loses() must be implemented in a way
-     * that all moves can call it against an opponents move.
+     * Return the string representation of the class.
      */
-    public function loses(Move $opponent)
+    public function __toString()
     {
-        return in_array($opponent->getType(), $this->loses);
-    }
-
-    /**
-     * getType is a simple getter used when comparing moves.
-     */
-    public function getType()
-    {
-        return $this->type;
+        return get_class($this);
     }
 }

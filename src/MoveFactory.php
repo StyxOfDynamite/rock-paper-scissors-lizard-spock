@@ -10,26 +10,46 @@ class MoveFactory implements MoveFactoryInterface
 {
     public function createRock(): Rock
     {
-        return new Rock();
+        /**
+         * The concrete Rock class, injects the Moves it is capable of beating via the constructor.
+         * This enables easier modification of the Game Move Types
+         */
+        return new Rock(new Scissors, new Lizard);
     }
 
     public function createPaper(): Paper
     {
-        return new Paper();
+        /**
+         * The concrete Paper class, injects the Moves it is capable of beating via the constructor.
+         * This enables easier modification of the Game Move Types
+         */
+        return new Paper(new Spock, new Rock);
     }
 
     public function createScissors(): Scissors
     {
-        return new Scissors();
+        /**
+         * The concrete Scissors class, injects the Moves it is capable of beating via the constructor.
+         * This enables easier modification of the Game Move Types
+         */
+        return new Scissors(new Paper, new Lizard);
     }
 
     public function createLizard(): Lizard
     {
-        return new Lizard();
+        /**
+         * The concrete Lizard class, injects the Moves it is capable of beating via the constructor.
+         * This enables easier modification of the Game Move Types
+         */
+        return new Lizard(new Paper, new Spock);
     }
 
     public function createSpock(): Spock
     {
-        return new Spock();
+        /**
+         * The concrete Spock class, injects the Moves it is capable of beating via the constructor.
+         * This enables easier modification of the Game Move Types
+         */
+        return new Spock(new Rock, new Scissors);
     }
 }

@@ -19,10 +19,10 @@ $game->addPlayer($computer);
 
 while (! $game->isFinished()) {
     $player->setMove($player->chooseMove());
-    printf("%s played %s\n", $player, $player->getMove()->getType());
+    printf("%s played %s\n", $player, $player->getMove());
     
     $computer->setMove($computer->chooseMove());
-    printf("%s played %s\n", $computer, $computer->getMove()->getType());
+    printf("%s played %s\n", $computer, $computer->getMove());
 
 
     if ($player->getMove()->draws($computer->getMove())) {
@@ -34,7 +34,7 @@ while (! $game->isFinished()) {
         printf("Win\n");
     }
 
-    if ($player->getMove()->loses($computer->getMove())) {
+    if ($computer->getMove()->beats($player->getMove())) {
         $computer->addWin();
         printf("Lose\n");
     }
