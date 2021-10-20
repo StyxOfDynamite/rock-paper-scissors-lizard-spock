@@ -2,12 +2,19 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Bomb;
 use App\Computer;
 use App\Game;
 use App\Human;
+use App\Lizard;
 use App\LoggerFactory;
+use App\MoveFactory;
+use App\Paper;
+use App\Rock;
+use App\Scissors;
 use App\ScreenLogger;
 use App\SimpleFileLogger;
+use App\Spock;
 
 $options = [
     'gameWonAt' => 5,
@@ -25,19 +32,46 @@ $loggerFactory->addProvider('screen', function () {
     return $instance;
 });
 
+$moveFactory = new MoveFactory;
 
+$moveFactory->registerProvider('rock', function () {
+    $instance = new Rock(new Lizard, new Scissors);
+    return $instance;
+});
 
+$moveFactory->registerProvider('paper', function () {
+    $instance = new Paper(new Rock, new Spock);
+    return $instance;
+});
 
+$moveFactory->registerProvider('scissors', function () {
+    $instance = new Scissors(new Lizard, new Paper);
+    return $instance;
+});
+
+$moveFactory->registerProvider('lizard', function () {
+    $instance = new Lizard(new Spock, new Paper);
+    return $instance;
+});
+
+$moveFactory->registerProvider('spock', function () {
+    $instance = new Spock(new Scissors, new Rock);
+    return $instance;
+});
+
+$moveFactory->registerProvider('bomb', function () {
+    $instance = new Bomb(new Rock, new Paper, new Scissors, new Lizard, new Spock);
+    return $instance;
+});
 
 $game = new Game($options, $loggerFactory);
-$player = new Human('John Doe', $loggerFactory);
-$computer = new Computer($loggerFactory);
+$player = new Human('John Doe', $loggerFactory, $moveFactory);
+$computer = new Computer($loggerFactory, $moveFactory);
 
 $game->addPlayer($player);
 $game->addPlayer($computer);
 
 while (! $game->isFinished()) {
-
     $player->setMove($player->chooseMove());
     $computer->setMove($computer->chooseMove());
 

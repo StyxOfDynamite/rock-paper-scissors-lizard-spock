@@ -13,9 +13,9 @@ use Exception;
 class Human extends Player
 {
 
-    public function __construct(string $name, LoggerFactoryInterface $loggerFactory)
+    public function __construct(string $name, LoggerFactoryInterface $loggerFactory, MoveFactoryInterface $moveFactory)
     {
-        parent::__construct($name, $loggerFactory);
+        parent::__construct($name, $loggerFactory, $moveFactory);
     }
 
     /**
@@ -24,26 +24,7 @@ class Human extends Player
      */
     public function chooseMove()
     {
-        $input = readline("Enter your move r/p/s/l/sp ?");
-        switch ($input) {
-            case 'r':
-                return $this->moveFactory->createRock();
-                break;
-            case 'p':
-                return $this->moveFactory->createPaper();
-                break;
-            case 's':
-                return $this->moveFactory->createScissors();
-                break;
-            case 'l':
-                return $this->moveFactory->createLizard();
-                break;
-            case 'sp':
-                return $this->moveFactory->createSpock();
-                break;
-            default:
-                // Only allows creation of valid moves, this could be moved into the factory
-                throw new Exception('Invalid Move!');
-        }
+        $input = readline("Enter your move rock/paper/scissors/lizard/spock ?");
+        return $this->moveFactory->getMove($input);
     }
 }

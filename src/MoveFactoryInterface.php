@@ -8,13 +8,7 @@ namespace App;
  */
 interface MoveFactoryInterface
 {
-    public function createRock(): Rock;
-
-    public function createPaper(): Paper;
-
-    public function createScissors(): Scissors;
+    public function registerProvider(string $name, callable $callable): MoveFactoryInterface;
     
-    public function createLizard(): Lizard;
-
-    public function createSpock(): Spock;
+    public function getMove($name): Move;
 }

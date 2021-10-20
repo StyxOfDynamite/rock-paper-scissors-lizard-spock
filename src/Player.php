@@ -15,11 +15,11 @@ abstract class Player
     protected $moveFactory;
     protected $logger;
 
-    public function __construct(string $name, LoggerFactoryInterface $loggerFactory)
+    public function __construct(string $name, LoggerFactoryInterface $loggerFactory, MoveFactoryInterface $moveFactory)
     {
         $this->name = $name;
         $this->score = 0;
-        $this->moveFactory = new MoveFactory;
+        $this->moveFactory = $moveFactory;
         $this->loggerFactory = $loggerFactory;
     }
 

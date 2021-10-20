@@ -2,9 +2,9 @@
 
 namespace App;
 
-class ScreenLogger
+class ScreenLogger implements Logger
 {
-    public function log(string $line)
+    public function log(string $line): void
     {
         print $line;
     }
