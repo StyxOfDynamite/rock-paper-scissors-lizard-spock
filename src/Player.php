@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Exception;
+
 /**
  * The player class cannot be instansiated so is abstract.
  * It holds a players name, score and current move.
@@ -14,11 +16,13 @@ abstract class Player
     protected $score;
     protected $moveFactory;
     protected $logger;
+    private $bombCount;
 
     public function __construct(string $name, LoggerFactoryInterface $loggerFactory, MoveFactoryInterface $moveFactory)
     {
         $this->name = $name;
         $this->score = 0;
+        $this->bombCount = 0;
         $this->moveFactory = $moveFactory;
         $this->loggerFactory = $loggerFactory;
     }
@@ -28,6 +32,14 @@ abstract class Player
      */
     public function setMove(Move $move)
     {
+        if ($move instanceof Bomb) {
+            $this->bombCount++;
+        }
+
+        if ($this->bombCount > 1) {
+            throw new Exception('You can only play Bomb once per game');
+        }
+
         $this->move = $move;
         $logger = $this->loggerFactory->provide('screen');
         $logger->log(sprintf("\t%s played %s\n", $this, $move));

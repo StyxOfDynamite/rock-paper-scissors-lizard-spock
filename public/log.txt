@@ -30,3 +30,6 @@
 	Added Player (Computer)
 === Game Finished ===
 	Winner is John Doe!
+=== New Game ===
+	Added Player (John Doe)
+	Added Player (Computer)
