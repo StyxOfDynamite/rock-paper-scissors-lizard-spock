@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Game\Logging;
 
 class SimpleFileLogger implements Logger
 {

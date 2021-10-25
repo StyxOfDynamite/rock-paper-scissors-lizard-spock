@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Game\Moves;
 
 /**
  * This interface defines the contract that a class for creating the moves must adhere to

@@ -1,6 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Game\Players;
+
+use App\Game\Moves\MoveFactoryInterface;
 
 /**
  * This class represnts a computer player.
@@ -12,9 +14,9 @@ class Computer extends Player
     /**
      * Creates a new Player with the name Computer
      */
-    public function __construct($loggerFactory, $moveFactory)
+    public function __construct(MoveFactoryInterface $moveFactory)
     {
-        parent::__construct('Computer', $loggerFactory, $moveFactory);
+        parent::__construct('Computer', $moveFactory);
     }
 
     /**
@@ -22,6 +24,10 @@ class Computer extends Player
      */
     public function chooseMove()
     {
+        if (rand(1, 100) === 36) {
+            return $this->moveFactory->getMove('bomb');
+        }
+
         switch (rand(1, 5)) {
             case 1:
                 return $this->moveFactory->getMove('rock');

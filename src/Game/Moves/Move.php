@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Game\Moves;
 
 /**
  * As this class cannot be instansiated it is abstract.

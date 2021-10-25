@@ -1,7 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Game\Players;
 
+use App\Game\Logging\LoggerFactoryInterface;
+use App\Game\Moves\MoveFactoryInterface;
 use Exception;
 
 /**
@@ -13,9 +15,9 @@ use Exception;
 class Human extends Player
 {
 
-    public function __construct(string $name, LoggerFactoryInterface $loggerFactory, MoveFactoryInterface $moveFactory)
+    public function __construct(string $name, MoveFactoryInterface $moveFactory)
     {
-        parent::__construct($name, $loggerFactory, $moveFactory);
+        parent::__construct($name, $moveFactory);
     }
 
     /**
@@ -24,7 +26,7 @@ class Human extends Player
      */
     public function chooseMove()
     {
-        $input = readline("Enter your move rock/paper/scissors/lizard/spock ?");
+        $input = readline("Enter your move rock/paper/scissors/lizard/spock/bomb ?");
         return $this->moveFactory->getMove($input);
     }
 }

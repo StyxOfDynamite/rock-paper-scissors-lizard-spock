@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Game\Logging;
 
 class ScreenLogger implements Logger
 {
     public function log(string $line): void
     {
-        print $line;
+        print $line . PHP_EOL;
     }
 }

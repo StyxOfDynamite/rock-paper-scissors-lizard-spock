@@ -1,7 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Game\Players;
 
+use App\Game\Logging\LoggerFactoryInterface;
+use App\Game\Moves\Move;
+use App\Game\Moves\MoveFactoryInterface;
 use Exception;
 
 /**
@@ -15,16 +18,12 @@ abstract class Player
     protected $move;
     protected $score;
     protected $moveFactory;
-    protected $logger;
-    private $bombCount;
 
-    public function __construct(string $name, LoggerFactoryInterface $loggerFactory, MoveFactoryInterface $moveFactory)
+    public function __construct(string $name, MoveFactoryInterface $moveFactory)
     {
         $this->name = $name;
         $this->score = 0;
-        $this->bombCount = 0;
         $this->moveFactory = $moveFactory;
-        $this->loggerFactory = $loggerFactory;
     }
 
     /**
@@ -32,23 +31,13 @@ abstract class Player
      */
     public function setMove(Move $move)
     {
-        if ($move instanceof Bomb) {
-            $this->bombCount++;
-        }
-
-        if ($this->bombCount > 1) {
-            throw new Exception('You can only play Bomb once per game');
-        }
-
         $this->move = $move;
-        $logger = $this->loggerFactory->provide('screen');
-        $logger->log(sprintf("\t%s played %s\n", $this, $move));
     }
 
     /**
      * Getter for the current move.
      */
-    public function getMove()
+    public function getMove(): Move
     {
         return $this->move;
     }
@@ -58,8 +47,6 @@ abstract class Player
      */
     public function addWin()
     {
-        $logger = $this->loggerFactory->provide('screen');
-        $logger->log(sprintf("\t%s Wins!\n", $this));
         $this->score++;
     }
 
