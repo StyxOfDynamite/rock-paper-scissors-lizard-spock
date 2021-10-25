@@ -8,7 +8,7 @@ namespace App;
  */
 interface MoveFactoryInterface
 {
-    public function registerProvider(string $name, callable $callable): MoveFactoryInterface;
+    public function registerMove(string $name, callable $callable): MoveFactoryInterface;
     
     public function getMove($name): Move;
 }

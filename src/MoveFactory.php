@@ -13,7 +13,7 @@ class MoveFactory implements MoveFactoryInterface
     private $moves = [];
     private $providers = [];
 
-    public function registerProvider($name, $callable): MoveFactoryInterface
+    public function registerMove($name, $callable): MoveFactoryInterface
     {
         $this->providers[$name] = $callable;
         return $this;

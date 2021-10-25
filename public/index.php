@@ -34,32 +34,32 @@ $loggerFactory->addProvider('screen', function () {
 
 $moveFactory = new MoveFactory;
 
-$moveFactory->registerProvider('rock', function () {
+$moveFactory->registerMove('rock', function () {
     $instance = new Rock(new Lizard, new Scissors);
     return $instance;
 });
 
-$moveFactory->registerProvider('paper', function () {
+$moveFactory->registerMove('paper', function () {
     $instance = new Paper(new Rock, new Spock);
     return $instance;
 });
 
-$moveFactory->registerProvider('scissors', function () {
+$moveFactory->registerMove('scissors', function () {
     $instance = new Scissors(new Lizard, new Paper);
     return $instance;
 });
 
-$moveFactory->registerProvider('lizard', function () {
+$moveFactory->registerMove('lizard', function () {
     $instance = new Lizard(new Spock, new Paper);
     return $instance;
 });
 
-$moveFactory->registerProvider('spock', function () {
+$moveFactory->registerMove('spock', function () {
     $instance = new Spock(new Scissors, new Rock);
     return $instance;
 });
 
-$moveFactory->registerProvider('bomb', function () {
+$moveFactory->registerMove('bomb', function () {
     $instance = new Bomb(new Rock, new Paper, new Scissors, new Lizard, new Spock);
     return $instance;
 });
