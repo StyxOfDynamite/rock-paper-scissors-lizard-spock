@@ -120,4 +120,5 @@ while (! $game->isFinished()) {
 $game->setWinner($game->findWinner());
 
 // output game->winner
+$log->log(sprintf("GAME WON BY %s", $game->getWinner()));
 $slack->log(sprintf("GAME WON BY %s", $game->getWinner()));
