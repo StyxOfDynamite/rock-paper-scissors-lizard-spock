@@ -85,7 +85,7 @@ $screen = $game->getLoggerFactory()->provide('screen');
 $player = new Human('John Doe', $moveFactory);
 $log->log(sprintf("Added %s", $player));
 $computer = new Computer($moveFactory);
-$log->log(sprintf("Added %s", $player));
+$log->log(sprintf("Added %s", $computer));
 
 $game->addPlayer($player);
 $game->addPlayer($computer);

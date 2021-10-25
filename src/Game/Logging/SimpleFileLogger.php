@@ -13,6 +13,6 @@ class SimpleFileLogger implements Logger
 
     public function log(string $line): void
     {
-        file_put_contents($this->filePath, $line, FILE_APPEND);
+        file_put_contents($this->filePath, $line . PHP_EOL, FILE_APPEND);
     }
 }
