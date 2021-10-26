@@ -24,26 +24,6 @@ class Computer extends Player
      */
     public function chooseMove()
     {
-        if (rand(1, 100) === 36) {
-            return $this->moveFactory->getMove('bomb');
-        }
-
-        switch (rand(1, 5)) {
-            case 1:
-                return $this->moveFactory->getMove('rock');
-                break;
-            case 2:
-                return $this->moveFactory->getMove('paper');
-                break;
-            case 3:
-                return $this->moveFactory->getMove('scissors');
-                break;
-            case 4:
-                return $this->moveFactory->getMove('lizard');
-                break;
-            case 5:
-                return $this->moveFactory->getMove('spock');
-                break;
-        }
+        return $this->getMoveFactory()->getMove(array_rand($this->getMoveFactory()->getAvailableMoves()));
     }
 }

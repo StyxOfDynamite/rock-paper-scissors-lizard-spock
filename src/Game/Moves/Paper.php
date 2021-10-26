@@ -9,6 +9,6 @@ class Paper extends Move
 {
     public function __toString()
     {
-        return '📄';
+        return 'paper';
     }
 }

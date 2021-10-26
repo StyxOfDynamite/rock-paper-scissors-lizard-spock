@@ -9,6 +9,6 @@ class Rock extends Move
 {
     public function __toString()
     {
-        return '🪨';
+        return 'rock';
     }
 }

@@ -26,7 +26,7 @@ class Human extends Player
      */
     public function chooseMove()
     {
-        $input = readline("Enter your move rock/paper/scissors/lizard/spock/bomb ?");
+        $input = readline(sprintf("Choose your move: %s?", implode(',', $this->getMoveFactory()->getAvailableMoves())));
         return $this->moveFactory->getMove($input);
     }
 }

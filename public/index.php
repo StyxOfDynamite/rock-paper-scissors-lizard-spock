@@ -40,35 +40,12 @@ $loggerFactory->addProvider('screen', function () {
 
 $moveFactory = new MoveFactory;
 
-$moveFactory->registerMove('rock', function () {
-    $instance = new Rock(new Lizard(), new Scissors());
-    return $instance;
-});
+$moveFactory->registerMove('rock', new Rock(new Scissors()));
+$moveFactory->registerMove('paper', new Paper(new Rock()));
+$moveFactory->registerMove('scissors', new Scissors(new Paper()));
+$moveFactory->registerMove('bomb', new Bomb(new Rock(), new Paper(), new Scissors()));
 
-$moveFactory->registerMove('paper', function () {
-    $instance = new Paper(new Rock(), new Spock());
-    return $instance;
-});
 
-$moveFactory->registerMove('scissors', function () {
-    $instance = new Scissors(new Lizard(), new Paper());
-    return $instance;
-});
-
-$moveFactory->registerMove('lizard', function () {
-    $instance = new Lizard(new Spock(), new Paper());
-    return $instance;
-});
-
-$moveFactory->registerMove('spock', function () {
-    $instance = new Spock(new Scissors(), new Rock());
-    return $instance;
-});
-
-$moveFactory->registerMove('bomb', function () {
-    $instance = new Bomb(new Rock(), new Paper(), new Scissors(), new Lizard(), new Spock());
-    return $instance;
-});
 
 
 // Create game
@@ -90,11 +67,11 @@ $log->log(sprintf("Added %s", $computer));
 $game->addPlayer($player);
 $game->addPlayer($computer);
 
-while (! $game->isFinished()) {
+while (!$game->isFinished()) {
     $player->setMove($player->chooseMove());
     $log->log(sprintf("%s played %s", $player, $player->getMove()));
     $screen->log(sprintf("%s played %s", $player, $player->getMove()));
-    
+
     $computer->setMove($computer->chooseMove());
     $log->log(sprintf("%s played %s", $computer, $computer->getMove()));
     $screen->log(sprintf("%s played %s", $computer, $computer->getMove()));
@@ -103,7 +80,7 @@ while (! $game->isFinished()) {
         $log->log(sprintf("DRAW!"));
         $screen->log(sprintf("DRAW!"));
     }
-    
+
     if ($player->getMove()->beats($computer->getMove())) {
         $log->log(sprintf("%s WINS!", $player));
         $screen->log(sprintf("%s WINS!", $player));

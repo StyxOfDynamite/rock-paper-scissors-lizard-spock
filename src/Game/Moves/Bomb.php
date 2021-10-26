@@ -7,8 +7,10 @@ namespace App\Game\Moves;
  */
 class Bomb extends Move
 {
+    protected $probability = 1;
+
     public function __toString()
     {
-        return '💣';
+        return 'bomb';
     }
 }

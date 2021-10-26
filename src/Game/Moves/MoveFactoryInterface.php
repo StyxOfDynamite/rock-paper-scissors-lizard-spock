@@ -8,7 +8,9 @@ namespace App\Game\Moves;
  */
 interface MoveFactoryInterface
 {
-    public function registerMove(string $name, callable $callable): MoveFactoryInterface;
-    
-    public function getMove($name): Move;
+    public function registerMove(string $name, Move $move): MoveFactoryInterface;
+
+    public function getMove(string $name): Move;
+
+    public function getAvailableMoves(): array;
 }

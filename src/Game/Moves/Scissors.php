@@ -9,6 +9,6 @@ class Scissors extends Move
 {
     public function __toString()
     {
-        return '✂️';
+        return 'scissors';
     }
 }

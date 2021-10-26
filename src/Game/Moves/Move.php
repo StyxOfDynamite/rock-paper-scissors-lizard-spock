@@ -9,6 +9,7 @@ namespace App\Game\Moves;
 abstract class Move implements Turn
 {
     protected $beats = [];
+    protected $probability = 100;
 
     public function __construct(Move ...$beats)
     {
@@ -44,5 +45,10 @@ abstract class Move implements Turn
     public function __toString()
     {
         return get_class($this);
+    }
+
+    public function getProbability()
+    {
+        return $this->probability;
     }
 }

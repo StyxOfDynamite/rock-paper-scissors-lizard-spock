@@ -9,6 +9,6 @@ class Spock extends Move
 {
     public function __toString()
     {
-        return '🖖🏻';
+        return 'spock';
     }
 }

@@ -72,4 +72,9 @@ abstract class Player
      * so each type of player must implement a chooseMove() method.
      */
     abstract public function chooseMove();
+
+    public function getMoveFactory()
+    {
+        return $this->moveFactory;
+    }
 }
